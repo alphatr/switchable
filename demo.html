@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head></head>
+<body>
+<style>
+.switchable {
+    margin: 20px auto;
+    width: 500px;
+}
+ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+/*
+ * 必须的样式
+ */
+.switchable > div { /* 容器 */
+    width: 248px;
+    height: 116px;
+    position: relative;
+    overflow: hidden;
+}
+.switchable .panels { /* 面板父类 */
+    margin: 0;
+}
+.switchable .panels li {
+    float: left; /* 如果是上下切换或者 fade 效果，则不需要 */
+    width: 248px;
+}
+/* 必须的样式结束 */
+
+.prev, .next {
+    color: #555;
+    text-decoration: none;
+}
+.prev:hover, .next:hover {
+    color: #222;
+}
+.prev.disabled, .next.disabled {
+    color: #AAA;
+}
+
+.trigger a {
+    background: #CCC;
+    color: #333;
+    padding: 0 5px;
+    text-decoration: none;
+}
+.trigger a.active {
+    background: #CCC;
+    color: #36F;
+    text-decoration: none;
+}
+
+</style>
+
+<div class="j-switchable switchable" data-switch='{"effect": "scroll", "loop": true}'><!-- Root 节点 加上 "switchable" Class 后就会自动初始化-->
+    <div><!-- overflow: hidden 节点-->
+        <ul class="panels"><!-- 加上 "items" Class, 则子节点为面板列表 -->
+            <li><!-- -->
+                <img src="http://p0.qhimg.com/t01840e6568cb154fc0.jpg">
+            </li>
+            <li><!-- -->
+                <img src="http://p0.qhimg.com/t01840e6568cb154fc0.jpg">
+            </li>
+            <li><!-- -->
+                <img src="http://p0.qhimg.com/t01840e6568cb154fc0.jpg">
+            </li>
+            <li><!-- -->
+                <img src="http://p0.qhimg.com/t01840e6568cb154fc0.jpg">
+            </li>
+            <li>
+                <textarea class="switchlazyload"><img src="http://p0.qhimg.com/t017f9ee79e04a7da62.jpg"></textarea>
+            </li>
+            <li>
+                <textarea class="switchlazyload"><img src="http://p0.qhimg.com/t01840e6568cb154fc0.jpg"></textarea>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 上下翻页节点 带上相应 Class（不是必须的） -->
+    <a href="###" class="prev">&lt;</a><!-- 当不可用时候 JS 会加上 "disabled" 的 Class-->
+    <a href="###" class="next">&gt;</a>
+
+    <!-- trigger Class（不是必须的） -->
+    <p class="trigger">
+        <a href="#1" class="active">1</a><!-- 当前面板 JS 会加上 "active" 的 Class-->
+        <a href="#2" class="">2</a>
+        <a href="#3" class="">3</a>
+        <a href="#3" class="">4</a>
+        <a href="#3" class="">5</a>
+        <a href="#3" class="">6</a>
+    </p>
+
+    <!-- 指示数字节点（不是必须的） -->
+    <div class="switch-num">1/3</div>
+</div>
+<script src="http://s1.qhimg.com/!a182c356/jquery.js"></script>
+
+<script src="switchable.js"></script>
+</body>
+</html>
