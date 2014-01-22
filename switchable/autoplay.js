@@ -13,7 +13,7 @@
     
     // 新增参数
     $.extend($.switchable.Config, {
-        autoplay: true,
+        autoplay: false,
 
         // 切换间隔时间
         interval: 3000,

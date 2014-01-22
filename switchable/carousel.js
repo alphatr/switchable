@@ -37,7 +37,7 @@
                 i = 0,
                 to,
                 pausing,
-                setAfter = function (index, isPrev) {
+                setNext = function (index, isPrev) {
                     if (!cfg.loop && isPrev && index === 0) {
                         return;
                     }
@@ -69,9 +69,13 @@
             $(host.root).find(cfg.prev).on('click', function (e) {
                 e.preventDefault();
                 if (!$(this).hasClass(cfg.disabledClass) && !host._anim) {
-                    setAfter(host.index, true);
+                    setNext(host.index, true);
                     to = host.willTo();
-                    host._circle = true;
+                    if (to === host.length - 1) {
+                        host._circle = true;
+                    } else {
+                        host._circle = false;
+                    }
                     host.switchTo(to);
                 }
             });
@@ -79,9 +83,13 @@
             $(host.root).find(cfg.next).on('click', function (e) {
                 e.preventDefault();
                 if (!$(this).hasClass(cfg.disabledClass) && !host._anim) {
-                    setAfter(host.index, false);
+                    setNext(host.index, false);
                     to = host.willTo();
-                    host._circle = true;
+                    if (to === 0) {
+                        host._circle = true;
+                    } else {
+                        host._circle = false;
+                    }
                     host.switchTo(to);
                 }
             });

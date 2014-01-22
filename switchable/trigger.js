@@ -23,7 +23,7 @@
         triggerType: 'hover', // or 'click'
 
         // 触发延迟
-        delay: 000, // 100ms
+        delay: 100 // 100ms
     });
 
 
@@ -55,11 +55,6 @@
                 e.preventDefault();
                 index = $(this).index();
 
-                // 避免重复触发
-                if (!host._triggerIsValid(index)) {
-                    return;
-                }
-
                 host._cancelDelayTimer();
                 host.switchTo(index);
             });
@@ -67,11 +62,6 @@
             if (cfg.triggerType === 'hover') {
                 host.triggers.hover(function () {
                     index = $(this).index();
-
-                    // 避免重复触发
-                    if (!host._triggerIsValid(index)) {
-                        return;
-                    }
 
                     host._delayTimer = setTimeout(function () {
                         host.switchTo(index);
@@ -101,13 +91,6 @@
 
             // 增加api
             $.extend(host, {
-                /**
-                 * is repeat?
-                 */
-                _triggerIsValid: function (to) {
-                    return host.index !== to;
-                },
-
                 /**
                  * cancel delay timer
                  */

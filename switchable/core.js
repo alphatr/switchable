@@ -139,6 +139,9 @@
              * 切换面板
              */
             _switchPanels: function (from, to) {
+                if (to === from) {
+                    return;
+                }
                 cfg.effect = cfg.effect.toLowerCase();
                 if (cfg.effect && $.switchable.Effects[cfg.effect]) {
                     $.switchable.Effects[cfg.effect].call(self, from, to);
@@ -152,13 +155,12 @@
              * switch to
              */
             switchTo: function (to) {
-
-                if (to === self.index) {
-                    return self;
-                }
-
                 to = to % self.length;
 
+		if (to === self.index) {
+                    return self;
+                }
+		
                 self._nextIndex = to;
 
                 // call beforeSwitch()
