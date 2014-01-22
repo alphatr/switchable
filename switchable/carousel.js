@@ -16,7 +16,8 @@
         // 选择器
         prev: '.prev',
         next: '.next',
-        disabledClass: 'disabled'
+        disabledClass: 'disabled',
+        respondinAnimating: false
     });
 
 
@@ -68,7 +69,14 @@
 
             $(host.root).find(cfg.prev).on('click', function (e) {
                 e.preventDefault();
-                if (!$(this).hasClass(cfg.disabledClass) && !host._anim) {
+                if (!$(this).hasClass(cfg.disabledClass)) {
+                    if (host._anim) {
+                        if (cfg.respondinAnimating) {
+                            host._anim.stop(true);
+                        } else {
+                            return;
+                        }
+                    }
                     setNext(host.index, true);
                     to = host.willTo();
                     if (to === host.length - 1) {
@@ -82,7 +90,14 @@
 
             $(host.root).find(cfg.next).on('click', function (e) {
                 e.preventDefault();
-                if (!$(this).hasClass(cfg.disabledClass) && !host._anim) {
+                if (!$(this).hasClass(cfg.disabledClass)) {
+                    if (host._anim) {
+                        if (cfg.respondinAnimating) {
+                            host._anim.stop(true);
+                        } else {
+                            return;
+                        }
+                    }
                     setNext(host.index, false);
                     to = host.willTo();
                     if (to === 0) {

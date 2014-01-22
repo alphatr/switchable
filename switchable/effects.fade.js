@@ -27,7 +27,7 @@
             };
 
         if (self._anim) {
-            self._anim.stop();
+            self._anim.stop(true);
 
             // 继续上次未完成
             self._anim.to.css({opacity: 1, zIndex: self.length});

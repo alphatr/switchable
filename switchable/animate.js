@@ -99,10 +99,15 @@
                     // 阻止回调执行
                     clearTimeout(timer);
                     timer = undefined;
+                    if (gotoEnd) {
+                        self._clearCss();
+                        self._complete();
+                    }
                 } else {
                     // stop jQuery animation
                     $el.stop(false, gotoEnd);
                 }
+
 
                 self.isAnimated = false;
 

@@ -37,13 +37,13 @@
             };
 
         if (self._anim) {
-            self._anim.stop();
+            self._anim.stop(true);
         }
 
-        beforeAnimate();
-
-        self._anim = new $.switchable.Animate(data.wrap, props, cfg.duration, cfg.easing, afterAnimate);
-
+        setTimeout(function () {
+            beforeAnimate();
+            self._anim = new $.switchable.Animate(data.wrap, props, cfg.duration, cfg.easing, afterAnimate);
+        }, 0);
     };
 
 
