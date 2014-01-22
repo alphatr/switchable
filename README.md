@@ -10,13 +10,13 @@ switchable 是提供了 Tabs, Slide, Carousel 等功能的一个 jQuery 切换�
     <div><!-- overflow: hidden 节点-->
         <ul class="items"><!-- 加上 "items" Class, 则子节点为面板列表 -->
             <li>
-                <img src="http://p0.qhimg.com/t01840e6568cb154fc0.jpg">
+                <img src="img1.jpg">
             </li>
             <li>
-                <img src="http://p0.qhimg.com/t01840e6568cb154fc0.jpg">
+                <img src="img2.jpg">
             </li>
             <li>
-                <img src="http://p0.qhimg.com/t01840e6568cb154fc0.jpg">
+                <img src="img3.jpg">
             </li>
         </ul>
     </div>
