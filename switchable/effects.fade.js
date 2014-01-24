@@ -28,19 +28,11 @@
 
         if (self._anim) {
             self._anim.stop(true);
-
-            // 继续上次未完成
-            self._anim.to.css({opacity: 1, zIndex: self.length});
-            self._anim.from.css({opacity: 0, zIndex: 1});
         }
 
         beforeAnimate();
 
         self._anim = new $.switchable.Animate(fromPanel, {opacity: 0}, cfg.duration, cfg.easing, afterAnimate);
-
-        // 存储本次切换的面板
-        self._anim.from = fromPanel;
-        self._anim.to = toPanel;
     };
 
 

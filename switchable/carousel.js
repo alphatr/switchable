@@ -17,7 +17,7 @@
         prev: '.prev',
         next: '.next',
         disabledClass: 'disabled',
-        respondinAnimating: false
+        respondinAnimating: true
     });
 
 
