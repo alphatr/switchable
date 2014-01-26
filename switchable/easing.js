@@ -1,6 +1,6 @@
 /**
  * jQuery Switchable v1.0
- * Plugin: Animate
+ * Plugin: Easing
  * By: baipan
  * 2014-01-15
  * easing.js
