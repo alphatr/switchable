@@ -160,6 +160,7 @@
                 if (to === self.index) {
                     return self;
                 }
+                self._nextIndex = to;
 
                 // call beforeSwitch()
                 var event = $.Event(_onBeforeSwitch);
@@ -172,7 +173,6 @@
                 self._switchPanels(self.index, to);
 
                 // update index
-                self._nextIndex = to;
                 self.index = to;
 
                 // call onSwitch()
