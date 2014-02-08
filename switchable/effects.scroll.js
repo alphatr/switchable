@@ -27,7 +27,7 @@
             isCritical = (isBackward || from === data.max && to === 0) && self._circle,
             props = {},
             beforeAnimate = function () {
-                props[data.prop] = isCritical ? self._adjustPosition(isBackward) : -data.size * to;
+                props[data.prop] = isCritical ? self._adjustPosition(isBackward) : -data.size * to - 0.3; /* 低版本 Webkit 会有一像素差异 */
             },
             afterAnimate = function () {
                 if (isCritical) {
