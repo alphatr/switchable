@@ -10,7 +10,7 @@
     if (!$.switchable) {
         return;
     }
-    
+
     // 新增参数
     $.extend($.switchable.Config, {
         // 选择器
@@ -29,7 +29,7 @@
 
     /**
      * API:
-     * 
+     *
      * this.trigger    =>    jQuery
      */
     $.switchable.Plugins.push({
@@ -46,7 +46,7 @@
             }
 
             host.triggers = $root.find(cfg.triggers).slice(0, host.length);
-            
+
             // 为激活项对应的 trigger 添加 currentTrigger
             host.triggers.eq(host.index).addClass(cfg.currentTrigger);
 

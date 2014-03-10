@@ -113,7 +113,7 @@
 
                 return self;
             },
-            
+
             _complete: function () {
                 if ($.isFunction(callback)) {
                     callback();

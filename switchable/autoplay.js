@@ -10,7 +10,7 @@
     if (!$.switchable) {
         return;
     }
-    
+
     // 新增参数
     $.extend($.switchable.Config, {
         autoplay: false,
@@ -28,7 +28,7 @@
 
     /**
      * API:
-     * 
+     *
      * this.paused    =>    Boolean
      * this.play()    =>    Function
      * this.pause() =>    Function
@@ -47,7 +47,11 @@
                         host._cancelTimers();
                         return;
                     }
-                    host._circle = true;
+                    if ((to === 0 && !cfg.isBackward) || (to === host.length - 1 && cfg.isBackward)) {
+                        host._circle = true;
+                    } else {
+                        host._circle = false;
+                    }
                     host.switchTo(to);
                 },
                 autoRun = function () {

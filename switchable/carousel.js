@@ -10,7 +10,7 @@
     if (!$.switchable) {
         return;
     }
-    
+
     // 新增参数
     $.extend($.switchable.Config, {
         // 选择器
@@ -23,7 +23,7 @@
 
     /**
      * API:
-     * 
+     *
      * this.prevBtn    =>    jQuery
      * this.nextBtn    =>    jQuery
      */
