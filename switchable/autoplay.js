@@ -86,9 +86,9 @@
 
             // 悬停暂停
             if (cfg.pauseOnHover) {
-                host.panels.hover(function () {
+                host.panels.on('mouseenter.switchAutoplay', function () {
                     host._pause();
-                }, function () {
+                }).on('mouseleave.switchAutoplay', function () {
                     if (!pausing) {
                         host._play();
                     }

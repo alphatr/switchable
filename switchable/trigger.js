@@ -39,19 +39,25 @@
             var cfg = host.config,
                 $root = $(host.root),
                 index,
-                pausing;
+                pausing,
+                triggerLength = $root.find(cfg.triggers).length;
 
-            if (!$root.find(cfg.triggers).length) {
+            if (!triggerLength) {
                 return;
+            }
+
+            while (triggerLength < host.length) {
+                $root.find(cfg.triggers).slice(0, 1).clone().insertAfter($root.find(cfg.triggers).last());
+                triggerLength = $root.find(cfg.triggers).length;
             }
 
             host.triggers = $root.find(cfg.triggers).slice(0, host.length);
 
             // 为激活项对应的 trigger 添加 currentTrigger
-            host.triggers.eq(host.index).addClass(cfg.currentTrigger);
+            host.triggers.removeClass(cfg.currentTrigger).eq(host.index).addClass(cfg.currentTrigger);
 
             // bind event
-            host.triggers.on("click", function (e) {
+            host.triggers.on("click.switchTrigger", function (e) {
                 e.preventDefault();
                 index = $(this).index();
 
@@ -60,14 +66,14 @@
             });
 
             if (cfg.triggerType === 'hover') {
-                host.triggers.hover(function () {
+                host.triggers.on('mouseenter.switchTrigger', function () {
                     index = $(this).index();
 
                     host._delayTimer = setTimeout(function () {
                         host.switchTo(index);
                     }, cfg.delay);
 
-                }, function () {
+                }).on('mouseleave.switchTrigger', function () {
                     host._cancelDelayTimer();
                 });
             }
@@ -79,10 +85,10 @@
 
             // 自动播放暂停
             if (cfg.autoplay && cfg.pauseOnHover) {
-                host.triggers.hover(function () {
+                host.triggers.on('mouseenter.switchTrigger', function () {
                     pausing = host.paused;
                     host._pause();
-                }, function () {
+                }).on('mouseleave.switchTrigger', function () {
                     if (!pausing) {
                         host._play();
                     }
@@ -108,6 +114,10 @@
                     host.triggers.removeClass(cfg.currentTrigger).eq(to).addClass(cfg.currentTrigger);
                 }
             });
+        },
+        destroy: function (host) {
+            host.triggers.off("click.switchTrigger");
+            host.triggers.off(".switchTrigger");
         }
     });
 })(jQuery, window, document);

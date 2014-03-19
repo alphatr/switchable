@@ -112,6 +112,11 @@
                     data.wrap.css(props);
                 }
             });
+        },
+        destroy: function (host) {
+            if (host._anim) {
+                host._anim.stop(true);
+            }
         }
     });
 

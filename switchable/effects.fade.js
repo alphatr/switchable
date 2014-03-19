@@ -51,6 +51,11 @@
                 panels.not(initPanel).css({opacity: 0, zIndex: 1});
                 initPanel.css({opacity: 1, zIndex: host.length});
             }
+        },
+        destroy: function (host) {
+            if (host._anim) {
+                host._anim.stop(true);
+            }
         }
     });
 })(jQuery, window, document);

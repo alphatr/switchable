@@ -29,7 +29,7 @@
             };
 
             // 监听事件
-            $(host).bind('beforeSwitch', function () {
+            $(host).on('beforeSwitch', function () {
                 $(host.panels).each(function (index, el) {
                     if (!loadLazyDom($(el))) {
                         loadLazyDom($(el).find("." + lazyloadCls));

@@ -41,7 +41,7 @@
             $(host.root).find(cfg.switchNum).html(textFormat(cfg.initIndex, host.length));
 
             // 监听事件
-            $(host).bind('switch', function () {
+            $(host).on('switch', function () {
                 $(host.root).find(cfg.switchNum).html(textFormat(host.index, host.length));
             });
         }

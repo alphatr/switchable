@@ -187,6 +187,39 @@
              */
             willTo: function () {
                 return self._nextIndex;
+            },
+
+            /**
+             * destroy
+             */
+            destroy: function () {
+                self._destroyPlugins();
+                self._destroy();
+            },
+
+            /**
+             * destroy plugins
+             */
+            _destroyPlugins: function () {
+                var plugins = $.switchable.Plugins,
+                    len = plugins.length,
+                    i = 0;
+
+                for (; i < len; i++) {
+                    if ($.isFunction(plugins[i].destroy)) {
+                        plugins[i].destroy(self);
+                    }
+                }
+            },
+
+            /**
+             * destroy
+             */
+            _destroy: function () {
+                var index;
+                for (index in self) {
+                    delete(self[index]);
+                }
             }
         });
 

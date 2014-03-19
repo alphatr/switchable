@@ -67,7 +67,7 @@
                 host[_prefix + 'Btn'] = _cfg;
             }
 
-            $(host.root).find(cfg.prev).on('click', function (e) {
+            $(host.root).find(cfg.prev).on('click.switchCarousel', function (e) {
                 e.preventDefault();
                 if (!$(this).hasClass(cfg.disabledClass)) {
                     if (host._anim) {
@@ -88,7 +88,7 @@
                 }
             });
 
-            $(host.root).find(cfg.next).on('click', function (e) {
+            $(host.root).find(cfg.next).on('click.switchCarousel', function (e) {
                 e.preventDefault();
                 if (!$(this).hasClass(cfg.disabledClass)) {
                     if (host._anim) {
@@ -138,6 +138,10 @@
 
                 host._circle = false;
             });
+        },
+        destroy: function (host) {
+            var btn = host.config.prev + ', ' + host.config.next;
+            $(host.root).find(btn).off('.switchCarousel');
         }
     });
 })(jQuery, window, document);
