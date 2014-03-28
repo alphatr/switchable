@@ -55,17 +55,6 @@
             _onBeforeSwitch = "beforeSwitch",
             _onSwitch = "switch";
 
-
-        /**
-         * 事件初始化绑定
-         */
-        if ($.isFunction(cfg.onBeforeSwitch)) {
-            $self.on(_onBeforeSwitch, cfg.onBeforeSwitch);
-        }
-        if ($.isFunction(cfg.onSwitch)) {
-            $self.on(_onSwitch, cfg.onSwitch);
-        }
-
         $.extend(self, {
             /**
              * install plugins
@@ -103,6 +92,11 @@
                 var $root = $(root),
                     initPanel;
 
+                // 初始化过后继续调用则不能
+                if ($root[0]._switchable) {
+                    return;
+                }
+
                 // 获取 panels
                 if ($root.find(cfg.panels).length) {
                     self.panels = $root.find(cfg.panels);
@@ -120,6 +114,16 @@
                     return;
                 }
 
+                /**
+                 * 事件初始化绑定
+                 */
+                if ($.isFunction(cfg.onBeforeSwitch)) {
+                    $self.on(_onBeforeSwitch, cfg.onBeforeSwitch);
+                }
+                if ($.isFunction(cfg.onSwitch)) {
+                    $self.on(_onSwitch, cfg.onSwitch);
+                }
+
                 // 当前自然数索引
                 self.index = ((cfg.initIndex % self.length) + self.length) % self.length;
 
@@ -127,12 +131,14 @@
                 self._nextIndex = self.index;
 
                 // 动画初始化（none 的初始化，其他动画由插件的 init() 初始化）
-
                 initPanel = self.panels.slice(self.index, self.index + 1);
                 if (cfg.effect.toLowerCase() === 'none') {
                     self.panels.not(initPanel).hide();
                     initPanel.show();
                 }
+
+                $root[0]._switchable = this;
+                return true;
             },
 
             /**
@@ -217,6 +223,7 @@
              */
             _destroy: function () {
                 var index;
+                delete $(root)[0]._switchable;
                 for (index in self) {
                     delete(self[index]);
                 }
@@ -224,8 +231,11 @@
         });
 
         // 初始化并安装插件
-        self._init();
-        self._initPlugins();
+        if (self._init()) {
+            self._initPlugins();
+        } else {
+            return $(root)[0]._switchable;
+        }
     };
 
 

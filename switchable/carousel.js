@@ -54,7 +54,7 @@
                     host._nextIndex = (index + num + host.length) % host.length;
                 };
 
-            if (!$(host.root).find(cfg.prev).length && !$(host.root).find(cfg.next)) {
+            if (!$(host.root).find(cfg.prev).length && !$(host.root).find(cfg.next).length) {
                 return;
             }
 
@@ -110,10 +110,10 @@
             });
 
             if (cfg.autoplay && cfg.pauseOnHover) {
-                $(host.root).find(cfg.prev + ', ' + cfg.next).hover(function () {
+                $(host.root).find(cfg.prev + ', ' + cfg.next).on('mouseenter.switchCarousel', function () {
                     pausing = host.paused;
                     host._pause();
-                }, function () {
+                }).on('mouseleave.switchCarousel', function () {
                     if (!pausing) {
                         host._play();
                     }
@@ -140,8 +140,12 @@
             });
         },
         destroy: function (host) {
-            var btn = host.config.prev + ', ' + host.config.next;
-            $(host.root).find(btn).off('.switchCarousel');
+            if ($(host.root).find(host.config.prev).length) {
+                $(host.root).find(host.config.prev).off('.switchCarousel');
+            }
+            if ($(host.root).find(host.config.next).length) {
+                $(host.root).find(host.config.next).off('.switchCarousel');
+            }
         }
     });
 })(jQuery, window, document);

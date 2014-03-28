@@ -163,6 +163,13 @@
             // start autoplay
             host._play();
 
+        },
+        destroy: function (host) {
+            if (!host.config.autoplay || host.length <= 1) {
+                return;
+            }
+            host._pause();
+            host.panels.off(".switchAutoplay");
         }
     });
 })(jQuery, window, document);

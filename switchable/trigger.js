@@ -116,8 +116,10 @@
             });
         },
         destroy: function (host) {
-            host.triggers.off("click.switchTrigger");
-            host.triggers.off(".switchTrigger");
+            if ($(host.root).find(host.config.triggers).length) {
+                host.triggers.off("click.switchTrigger");
+                host.triggers.off(".switchTrigger");
+            }
         }
     });
 })(jQuery, window, document);
