@@ -21,7 +21,7 @@
             var lazyloadCls = host.config.lazyloadCls,
             loadLazyDom = function ($el) {
                 if ($el.hasClass(lazyloadCls)) {
-                    var lazyDom = $el.val().trim();
+                    var lazyDom = $.trim($el.val());
                     $el.replaceWith(lazyDom);
                     return true;
                 }

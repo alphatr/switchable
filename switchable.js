@@ -1314,7 +1314,7 @@
             var lazyloadCls = host.config.lazyloadCls,
             loadLazyDom = function ($el) {
                 if ($el.hasClass(lazyloadCls)) {
-                    var lazyDom = $el.val().trim();
+                    var lazyDom = $.trim($el.val());
                     $el.replaceWith(lazyDom);
                     return true;
                 }
@@ -1331,7 +1331,8 @@
             });
         }
     });
-})(jQuery, window, document); 
+})(jQuery, window, document);
+ 
 /**
  * jQuery Switchable v1.0
  * Plugin: AutoInit
