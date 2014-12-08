@@ -1,0 +1,23 @@
+{
+  "name": "switchable",
+  "version": "1.0.0",
+  "description": "提供了 Tabs, Slide, Carousel 等功能的一个 jQuery 切换组件",
+  "author": {
+    "name": "AlphaTr",
+    "email": "trefoiles@gmail.com",
+    "url": "https://github.com/AlphaTr"
+  },
+  "keywords": [
+    "jquery plugin",
+    "switchable"
+  ],
+  "homepage": "https://github.com/AlphaTr/switchable",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AlphaTr/switchable.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.10"
+  }
+}
