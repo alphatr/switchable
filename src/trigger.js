@@ -59,7 +59,7 @@
             // bind event
             host.triggers.on("click.switchTrigger", function (e) {
                 e.preventDefault();
-                index = $(this).index();
+                index = host.triggers.index( $(this) );
 
                 host._cancelDelayTimer();
                 host.switchTo(index);
